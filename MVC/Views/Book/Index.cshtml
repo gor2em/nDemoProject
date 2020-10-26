@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Book>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<a asp-controller="book" asp-action="create" class="btn btn-dark form-control">Kitap Ekle</a>
+<table class="table table-bordered text-center">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Writer Name</th>
+            <th>Category Id</th>
+            <th>Sil</th>
+            <th>Güncelle</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td>@book.Id</td>
+                <td><a asp-route-id="@book.Id" asp-controller="book" asp-action="detail">@book.Name</a></td>
+                <td>@book.WriterName</td>
+                <td>@book.CategoryId</td>
+                <td><a asp-controller="book" asp-action="Delete" asp-route-id="@book.Id" class="btn btn-danger">Sil</a></td>
+                <td><a asp-controller="book" asp-action="Update" asp-route-id="@book.Id" class="btn btn-warning">Güncelle</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
